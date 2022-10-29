@@ -12,7 +12,9 @@ const Home = () => {
             Ajudaremos você a encontrar os melhores produtos disponíveis no
             mercado.
           </p>
-          <ButtonIcon />
+          <div className='container-btn'>
+            <ButtonIcon />
+          </div>
         </div>
         <div className="home-image-container">
           <MainImage />
