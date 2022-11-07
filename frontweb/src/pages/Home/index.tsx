@@ -13,7 +13,7 @@ const Home = () => {
             mercado.
           </p>
           <div className='container-btn'>
-            <ButtonIcon />
+            <ButtonIcon text='Inicie sua busca aqui' />
           </div>
         </div>
         <div className="home-image-container">
