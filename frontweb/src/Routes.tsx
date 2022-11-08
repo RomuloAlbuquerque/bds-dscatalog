@@ -4,6 +4,7 @@ import Catalog from "pages/Catalog"
 import Admin from "pages/Admin"
 import Navbar from "components/Navbar"
 import ProductDetails from "components/ProductDetails"
+import { product } from "util/mock"
 
 const Routes = () =>(
         <BrowserRouter>
@@ -16,7 +17,7 @@ const Routes = () =>(
                     <Catalog />
                 </Route>
                 <Route path="/products/:productid">
-                    <ProductDetails />
+                    <ProductDetails product={product}/>
                 </Route>
                 <Route path="/admin">
                     <Admin />
