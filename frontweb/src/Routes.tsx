@@ -3,6 +3,7 @@ import Home from "pages/Home"
 import Catalog from "pages/Catalog"
 import Admin from "pages/Admin"
 import Navbar from "components/Navbar"
+import ProductDetails from "components/ProductDetails"
 
 const Routes = () =>(
         <BrowserRouter>
@@ -11,8 +12,11 @@ const Routes = () =>(
                 <Route path="/" exact>
                     <Home />
                 </Route>
-                <Route path="/products">
+                <Route path="/products" exact>
                     <Catalog />
+                </Route>
+                <Route path="/products/:productid">
+                    <ProductDetails />
                 </Route>
                 <Route path="/admin">
                     <Admin />
