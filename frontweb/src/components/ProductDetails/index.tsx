@@ -2,6 +2,7 @@ import ProductPrice from 'components/ProductPrice';
 import { Product } from 'types/product';
 import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
 import './styles.css';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
@@ -11,10 +12,12 @@ const ProductDetails = ({ product }: Props) => {
   return (
     <div className="product-details-container">
       <div className="product-details-card base-card">
-        <div className="goback-container">
-          <ArrowIcon />
-          <h6>Voltar</h6>
-        </div>
+        <Link to="/products">
+          <div className="goback-container">
+            <ArrowIcon />
+            <h6>Voltar</h6>
+          </div>
+        </Link>
         <div className="row">
           <div className="col-xl-6">
             <div className="img-container">
