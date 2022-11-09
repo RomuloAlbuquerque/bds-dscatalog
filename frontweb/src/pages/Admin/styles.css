@@ -1,23 +1,18 @@
-.container-main{
-    margin-top: 30px;
+.admin-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.display-admin{
-    display: flex;
-    justify-content: center;
+.admin-content {
+  padding: 20px;
 }
 
-.adm{
-    border: 4px solid white;
-    background-color: blue;
-    text-align: center;
-    color: white;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+@media (min-width: 1200px) {
+  .admin-container {
+    flex-direction: row;
+  }
 
-.adm h1{
-    font-size: 18px;
+  .admin-content {
+    flex: 1;
+  }
 }
