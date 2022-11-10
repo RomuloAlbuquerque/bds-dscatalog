@@ -8,9 +8,13 @@ import { SpringPage } from 'types/vendor/spring';
 import { Product } from 'types/product';
 import { AxiosParams } from 'types/vendor/axios';
 import { BASE_URL } from 'util/requests';
+import LoaderCatalog from './LoaderCatalog';
 
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
+
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const params: AxiosParams = {
       method: 'GET',
@@ -20,9 +24,13 @@ const Catalog = () => {
         size: 12,
       },
     };
-    axios(params).then((response) => {
-      setPage(response.data);
-    });
+
+    setIsLoading(true);
+    axios(params)
+      .then((response) => {
+        setPage(response.data);
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
@@ -32,13 +40,17 @@ const Catalog = () => {
       </div>
 
       <div className="row">
-        {page?.content.map(x => (
-          <div className="col-sm-6 col-md-5 col-lg-4 col-xl-3" key={x.id}>
-            <Link to="/products/1">
-              <ProductCard product={x} />
-            </Link>
-          </div>
-        ))}
+        {isLoading ? (
+          <LoaderCatalog />
+        ) : (
+          page?.content.map((x) => (
+            <div className="col-sm-6 col-md-5 col-lg-4 col-xl-3" key={x.id}>
+              <Link to="/products/1">
+                <ProductCard product={x} />
+              </Link>
+            </div>
+          ))
+        )}
       </div>
 
       <div className="row">
