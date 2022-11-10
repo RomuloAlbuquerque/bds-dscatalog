@@ -1,14 +1,29 @@
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
 import ProductPrice from 'components/ProductPrice';
 import { Product } from 'types/product';
-import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
+import { BASE_URL } from 'util/requests';
 import './styles.css';
-import { Link } from 'react-router-dom';
 
-type Props = {
-  product: Product;
+
+type UrlParams = {
+  productid: string;
 };
 
-const ProductDetails = ({ product }: Props) => {
+const ProductDetails = () => {
+  const { productid } = useParams<UrlParams>();
+
+  const [product, setProduct] = useState<Product>();
+
+  useEffect(() => {
+    axios.get(BASE_URL+"/products/"+productid).then((response) => {
+      setProduct(response.data);
+    });
+  }, [productid]);
+
   return (
     <div className="product-details-container">
       <div className="product-details-card base-card">
@@ -21,26 +36,17 @@ const ProductDetails = ({ product }: Props) => {
         <div className="row">
           <div className="col-xl-6">
             <div className="img-container">
-              <img src={product.imgUrl} alt="product" />
+              <img src={product?.imgUrl} alt={product?.name} />
             </div>
             <div className="name-price-container">
-              <h2>{product.name}</h2>
-              <ProductPrice price={product.price} />
+              <h2>{product?.name}</h2>
+            {product && <ProductPrice price={product?.price} />}
             </div>
           </div>
           <div className="col-xl-6">
             <div className="description-container">
               <h2>Descrição do Produto</h2>
-              <p>
-                Projetado para garantir a produtividade no seu dia a dia O
-                desempenho que você precisa para uma jornada eficiente é
-                garantido pelos processadores Intel da família Core
-                Conectividade ao seu alcance Saídas de áudio com qualidade HD e
-                conexões USB estão dipooníveis na frontal do seu CorPc Baixo
-                consumo Mesmo trabalhando todos os dias, você não tera sustos na
-                conta de energia. Fizemos tudo bem feito, para o seu CorPC seja
-                eficiente, silencioso e econômico no consumo de energia elétrica
-              </p>
+              <p>{product?.description}</p>
             </div>
           </div>
         </div>

@@ -4,7 +4,6 @@ import Catalog from "pages/Catalog"
 import Admin from "pages/Admin"
 import Navbar from "components/Navbar"
 import ProductDetails from "components/ProductDetails"
-import { product } from "util/mock"
 
 const Routes = () =>(
         <BrowserRouter>
@@ -17,7 +16,7 @@ const Routes = () =>(
                     <Catalog />
                 </Route>
                 <Route path="/products/:productid">
-                    <ProductDetails product={product}/>
+                    <ProductDetails />
                 </Route>
                 <Redirect from="/admin" to="/admin/products" exact/>
                 <Route path="/admin">
