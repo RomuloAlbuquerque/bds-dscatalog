@@ -14,19 +14,19 @@
 }
 
 .loader-circle-left {
-  border-left: 5px solid red;
+  border-left: 5px solid #bbb;
 }
 
 .loader-circle-bottom {
-  border-bottom: 5px solid green;
+  border-bottom: 5px solid #ccc;
 }
 
 .loader-circle-right {
-  border-right: 5px solid blue;
+  border-right: 5px solid #ddd;
 }
 
 .loader-circle-top {
-  border-top: 5px solid purple;
+  border-top: 5px solid #eee;
 }
 
 .animation {
