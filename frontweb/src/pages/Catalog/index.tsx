@@ -16,21 +16,40 @@ const Catalog = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const params: AxiosParams = {
+    // const params: AxiosParams = {
+    //   method: 'GET',
+    //   url: `${BASE_URL}/products`,
+    //   params: {
+    //     page: 0,
+    //     size: 12,
+    //   },
+    // };
+
+    setIsLoading(true);
+
+    //acrescentado//////////////////////////////////////////
+    axios({
       method: 'GET',
       url: `${BASE_URL}/products`,
       params: {
         page: 0,
         size: 12,
       },
-    };
-
-    setIsLoading(true);
-    axios(params)
+      headers: {
+        'ngrok-skip-browser-warning': 'qualquer',
+      },
+    })
       .then((response) => {
         setPage(response.data);
-      })
-      .finally(() => setIsLoading(false));
+      }).finally(() => setIsLoading(false));
+//////////////////////////////////////////////////////////////
+
+
+      // axios(params)
+      //   .then((response) => {
+      //     setPage(response.data);
+      //   })
+      //.finally(() => setIsLoading(false));
   }, []);
 
   return (
